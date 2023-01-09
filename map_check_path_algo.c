@@ -6,13 +6,13 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:30:07 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/08 21:30:07 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:13:02 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	*ft_exit_pos(char **map)
+static int	*ft_exit_pos(char **map)
 {
 	char		*tmp;
 	static int	pos[2];
@@ -36,7 +36,7 @@ int	*ft_exit_pos(char **map)
 	return (NULL);
 }
 
-char	**ft_arraydup(char	**tab)
+static char	**ft_arraydup(char	**tab)
 {
 	char	**ar;
 	char	**cp;
@@ -46,7 +46,7 @@ char	**ft_arraydup(char	**tab)
 	cp = tab;
 	while (*tab++)
 		++size;
-	ar = ft_calloc(size + 1, sizeof(char *));
+	ar = malloc((size + 1) * sizeof(char *));
 	if (!ar)
 		return (NULL);
 	tab = cp;
@@ -61,12 +61,12 @@ char	**ft_arraydup(char	**tab)
 	return (cp);
 }
 
-int	is_path(char c)
+static int	is_path(char c)
 {
 	return (c == '0' || c == 'C');
 }
 
-void	ft_write_map_paths(char **map, int row, int col)
+static void	ft_write_map_paths(char **map, int row, int col)
 {
 	if (is_path(map[row - 1][col]))
 	{
@@ -102,7 +102,7 @@ void	ft_is_valid_path(char **_map)
 	ft_write_map_paths(map, ft_player_pos(map)[1], ft_player_pos(map)[0]);
 	if (ft_count_elements(map, 'C'))
 	{
-		ft_printf("Error\ninvalid map: invalid paths to Collectable");
+		printf("Error\ninvalid map: invalid paths to Collectable");
 		exit(1);
 	}
 	row = ft_exit_pos(map)[1];
@@ -110,7 +110,7 @@ void	ft_is_valid_path(char **_map)
 	if (map[row - 1][col] != 'P' && map[row][col + 1] != 'P'
 		&& map[row + 1][col] != 'P' && map[row][col - 1] != 'P')
 	{
-		ft_printf("Error\ninvalid map: invalid paths to Exit");
+		printf("Error\ninvalid map: invalid paths to Exit");
 		exit(1);
 	}
 	ft_clear(map);

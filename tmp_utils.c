@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tmp_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/09 09:17:05 by samjaabo         ###   ########.fr       */
+/*   Created: 2023/01/09 08:50:15 by samjaabo          #+#    #+#             */
+/*   Updated: 2023/01/09 08:51:22 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-// int main(void)
-// {
-// 	char **map;
-// 	int fd;
-// 	int *pos;
-
-// 	map = ft_read_map("tests.txt");
-// 	ft_map_rules(map);
-// 	ft_printar(map);
-// 	return (0);
-// }
-
-
-
-int main(void)
+void ft_printar(char **t)
 {
-	void *mlx;
-	void *win;
-	int fd;
-	int *pos;
-	
-
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 640, 480, "Key Press Test");
-	mlx_key_hook(win, movments, NULL);
-	mlx_loop(mlx);
-	return (0);
+	if (!t)
+	{
+		printf("(null)");
+		return ;
+	}
+	while(*t)
+		printf("%s\n", *t++);
 }

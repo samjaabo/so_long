@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 18:41:41 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/06 16:20:54 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/01/09 08:24:27 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,37 +130,14 @@ char	**ft_split_args(const char *str, char c)
 	}
 	return (ft_del_empty(ft_realloc(args, buf), c));
 }
-//===========
-char	**ft_arraydup(char	**tab)
-{
-	char	**ar;
-	char	**cp;
-	int		size;
-
-	size = 0;
-	while (*tab++)
-		++size;
-	ar = ft_calloc(size + 1, sizeof(char *));
-	if (!ar)
-		return (NULL);
-	cp = ar;
-	while (size--)
-	{
-		*ar = ft_strdup(*tab++);
-		if (!*ar++)
-			return (ft_clear(cp), NULL);
-	}
-	*ar = NULL;
-	return (cp);
-}
 
 void ft_printar(char **t)
 {
 	if (!t)
 	{
-		ft_printf("(null)");
+		printf("(null)");
 		return ;
 	}
 	while(*t)
-		ft_printf("%s\n", *t++);
+		printf("%s\n", *t++);
 }

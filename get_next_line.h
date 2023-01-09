@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/09 09:17:05 by samjaabo         ###   ########.fr       */
+/*   Created: 2022/11/15 12:01:23 by samjaabo          #+#    #+#             */
+/*   Updated: 2023/01/09 08:33:35 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-// int main(void)
-// {
-// 	char **map;
-// 	int fd;
-// 	int *pos;
+# include <stdlib.h>
+# include <unistd.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-// 	map = ft_read_map("tests.txt");
-// 	ft_map_rules(map);
-// 	ft_printar(map);
-// 	return (0);
-// }
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(const char *str);
+char	*get_next_line(int fd);
 
-
-
-int main(void)
-{
-	void *mlx;
-	void *win;
-	int fd;
-	int *pos;
-	
-
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 640, 480, "Key Press Test");
-	mlx_key_hook(win, movments, NULL);
-	mlx_loop(mlx);
-	return (0);
-}
+#endif

@@ -6,77 +6,13 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/06 20:02:20 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:17:02 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-char	**ft_read_map(char *file)
-{
-	int fd;
-	char	**ar;
-	char	*tmp;
-
-	ar = NULL;
-	fd = open("tests.txt", O_RDWR);
-	while (1)
-	{
-		tmp = get_next_line(fd);
-		if (!tmp)
-			break ;
-		if (tmp[ft_strlen(tmp) - 1] == '\n')
-			tmp[ft_strlen(tmp) - 1] = 0;
-		ar = ft_realloc(ar, tmp);
-	}
-	return (ar);
-}
-
-int	*ft_player_pos(char **map)
-{
-	char		*tmp;
-	static int	pos[2];
-
-	pos[0] = 0;
-	pos[1] = 0;
-	while (*map)
-	{
-		tmp = *map;
-		pos[0] = 0;
-		while (*tmp)
-		{
-			if (*tmp == 'P')
-				return (pos);
-			pos[0]++;
-			++tmp;
-		}
-		pos[1]++;
-		++map;
-	}
-	return (NULL);
-}
-
-int	ft_count_elements(char **map, char c)
-{
-	char	*tmp;
-	int		count;
-
-	count = 0;
-	while (*map)
-	{
-		tmp = *map;
-		while (*tmp)
-		{
-			if (*tmp == c)
-				++count;
-			++tmp;
-		}
-		++map;
-	}
-	return (count);
-}
-
-int	ft_move_up(char **map)
+static int	ft_move_up(char **map)
 {
 	int	row;
 	int	col;
@@ -98,7 +34,7 @@ int	ft_move_up(char **map)
 	return (0);
 }
 
-int	ft_move_left(char **map)
+static int	ft_move_left(char **map)
 {
 	int	row;
 	int	col;
@@ -119,7 +55,7 @@ int	ft_move_left(char **map)
 	return (0);
 }
 
-int	ft_move_right(char **map)
+static int	ft_move_right(char **map)
 {
 	int	row;
 	int	col;
@@ -140,7 +76,7 @@ int	ft_move_right(char **map)
 	return (0);
 }
 
-int	ft_move_down(char **map)
+static int	ft_move_down(char **map)
 {
 	int	row;
 	int	col;
@@ -169,7 +105,7 @@ int movments(int key, void *param)
 	if(!map)
 		map = ft_read_map("tests.txt");
 	(void)param;
-	system("clear");
+	system("clear");//debug
 	if (key == 126)
 		mov_count += ft_move_up(map);
 	else if (key == 123)
@@ -181,7 +117,7 @@ int movments(int key, void *param)
 	else if (key == 53)
 		exit(0);
 	ft_printar(map);
-	ft_printf("%d\n", mov_count);
+	printf("%d\n", mov_count);
 	return (0);
 }
 
