@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:06:58 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/09 09:00:00 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:53:50 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,24 @@ char		**ft_split_args(const char *str, char c);
 void		 ft_printar(char **t);
 
 
+typedef struct widget_s {
+	char	**map;
+	void	*self;
+	void	*window;
+	void	*ground_img;
+	void	*wall_img;
+	void	*player_img;
+	void	*collect_img;
+	void	*exit_img;
+	int		rows;
+	int		cols;
+	int		row;
+	int		col;
+	int		size;
+}			t_widget;
 
 //project functions
-int 	movments(int key, void *param);
+int 	movments(int key, t_widget *widget);
 
 //so_long_utils.c
 void	ft_error(const char *msg);
@@ -54,4 +69,8 @@ void	ft_is_valid_path(char **_map);
 
 //map_rules.c
 void	ft_map_rules(char **map);
+
+//main.c
+void	__init__(t_widget *widget, char *map_file);
+void	self_show_widget(t_widget *wid);
 #endif

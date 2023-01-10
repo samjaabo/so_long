@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/09 09:17:02 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:08:35 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,12 @@ static int	ft_move_down(char **map)
 	return (0);
 }
 
-int movments(int key, void *param)
+int movments(int key, t_widget *widget)
 {
-	static char **map = NULL;
+	char		**map;
 	static int	mov_count;
 
-	if(!map)
-		map = ft_read_map("tests.txt");
-	(void)param;
-	system("clear");//debug
+	map = widget->map;
 	if (key == 126)
 		mov_count += ft_move_up(map);
 	else if (key == 123)
@@ -117,6 +114,7 @@ int movments(int key, void *param)
 	else if (key == 53)
 		exit(0);
 	ft_printar(map);
+	self_show_widget(widget);
 	printf("%d\n", mov_count);
 	return (0);
 }

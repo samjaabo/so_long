@@ -6,37 +6,89 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/09 09:17:05 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:06:10 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-// int main(void)
-// {
-// 	char **map;
-// 	int fd;
-// 	int *pos;
 
-// 	map = ft_read_map("tests.txt");
-// 	ft_map_rules(map);
-// 	ft_printar(map);
-// 	return (0);
-// }
-
-
-
-int main(void)
+int count_cols(char **map)
 {
-	void *mlx;
-	void *win;
-	int fd;
-	int *pos;
-	
+	return (ft_strlen(*map));
+}
+int count_rows(char **map)
+{
+	int n;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 640, 480, "Key Press Test");
-	mlx_key_hook(win, movments, NULL);
-	mlx_loop(mlx);
-	return (0);
+	n = 0;
+	while(*map++)
+		++n;
+	return (n);
+}
+
+void	self_show_widget(t_widget *wid)
+{
+	wid->row = 0;
+	while (wid->row < wid->rows)
+	{
+		wid->col = 0;
+		while (wid->col < wid->cols)
+		{
+			if (wid->map[wid->row][wid->col] == '1')
+				mlx_put_image_to_window(wid->self, wid->window,
+					wid->wall_img, wid->size * wid->col, wid->size * wid->row);
+			else if (wid->map[wid->row][wid->col] == 'C')
+				mlx_put_image_to_window(wid->self, wid->window,
+					wid->player_img, wid->size * wid->col, wid->size * wid->row);
+			else if (wid->map[wid->row][wid->col] == 'P')
+				mlx_put_image_to_window(wid->self, wid->window,
+					wid->collect_img, wid->size * wid->col, wid->size * wid->row);
+			else if (wid->map[wid->row][wid->col] == 'E')
+				mlx_put_image_to_window(wid->self, wid->window,
+					wid->exit_img, wid->size * wid->col, wid->size * wid->row);
+			else
+				mlx_put_image_to_window(wid->self, wid->window,
+					wid->ground_img, wid->size * wid->col, wid->size * wid->row);
+			wid->col++;
+		}
+		wid->row++;
+	}
+}
+
+void	__init__(t_widget *widget, char *map_file)
+{
+	int	tmp;
+
+	widget->map = ft_read_map(map_file);
+	ft_map_rules(widget->map);
+	widget->player_img = mlx_xpm_file_to_image(widget->self,
+		 "./textures/player2.xpm", &tmp, &tmp);
+	widget->exit_img = mlx_xpm_file_to_image(widget->self,
+		"./textures/exit.xpm", &tmp, &tmp);
+	widget->collect_img = mlx_xpm_file_to_image(widget->self,
+		"./textures/collect2.xpm", &tmp, &tmp);
+	widget->ground_img = mlx_xpm_file_to_image(widget->self,
+		"./textures/ground4.xpm", &tmp, &tmp);
+	widget->wall_img = mlx_xpm_file_to_image(widget->self,
+		"./textures/wall3.xpm", &tmp, &tmp);
+	widget->cols = count_cols(widget->map);
+	widget->rows = count_rows(widget->map);
+	widget->row = 0;
+	widget->col = 0;
+	widget->size = tmp;
+	widget->self = mlx_init();
+	widget->window = mlx_new_window(widget->self, widget->cols*widget->size,
+		widget->rows*widget->size, "42 so_long");
+	self_show_widget(widget);
+}
+
+int main()
+{
+	int			tmp;
+	t_widget	widget;
+
+	__init__(&widget, "tests.txt");
+	mlx_key_hook(widget.window, movments, &widget);
+	mlx_loop(widget.self);
 }
