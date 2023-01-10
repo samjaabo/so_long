@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/10 16:08:35 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:59:15 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,23 +113,9 @@ int movments(int key, t_widget *widget)
 		mov_count += ft_move_down(map);
 	else if (key == 53)
 		exit(0);
+	system("clear");
 	ft_printar(map);
 	self_show_widget(widget);
 	printf("%d\n", mov_count);
 	return (0);
 }
-
-// int main(void)
-// {
-// 	void *mlx;
-// 	void *win;
-// 	int fd;
-// 	int *pos;
-	
-
-// 	mlx = mlx_init();
-// 	win = mlx_new_window(mlx, 640, 480, "Key Press Test");
-// 	mlx_key_hook(win, movments, NULL);
-// 	mlx_loop(mlx);
-// 	return (0);
-// }

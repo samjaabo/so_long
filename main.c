@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/10 16:06:10 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:52:00 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	self_show_widget(t_widget *wid)
 					wid->wall_img, wid->size * wid->col, wid->size * wid->row);
 			else if (wid->map[wid->row][wid->col] == 'C')
 				mlx_put_image_to_window(wid->self, wid->window,
-					wid->player_img, wid->size * wid->col, wid->size * wid->row);
+					wid->collect_img, wid->size * wid->col, wid->size * wid->row);
 			else if (wid->map[wid->row][wid->col] == 'P')
 				mlx_put_image_to_window(wid->self, wid->window,
-					wid->collect_img, wid->size * wid->col, wid->size * wid->row);
+					wid->player_img, wid->size * wid->col, wid->size * wid->row);
 			else if (wid->map[wid->row][wid->col] == 'E')
 				mlx_put_image_to_window(wid->self, wid->window,
 					wid->exit_img, wid->size * wid->col, wid->size * wid->row);
@@ -63,15 +63,15 @@ void	__init__(t_widget *widget, char *map_file)
 	widget->map = ft_read_map(map_file);
 	ft_map_rules(widget->map);
 	widget->player_img = mlx_xpm_file_to_image(widget->self,
-		 "./textures/player2.xpm", &tmp, &tmp);
+		 "./textures/player.xpm", &tmp, &tmp);
 	widget->exit_img = mlx_xpm_file_to_image(widget->self,
 		"./textures/exit.xpm", &tmp, &tmp);
 	widget->collect_img = mlx_xpm_file_to_image(widget->self,
-		"./textures/collect2.xpm", &tmp, &tmp);
+		"./textures/collect.xpm", &tmp, &tmp);
 	widget->ground_img = mlx_xpm_file_to_image(widget->self,
-		"./textures/ground4.xpm", &tmp, &tmp);
+		"./textures/ground.xpm", &tmp, &tmp);
 	widget->wall_img = mlx_xpm_file_to_image(widget->self,
-		"./textures/wall3.xpm", &tmp, &tmp);
+		"./textures/wall.xpm", &tmp, &tmp);
 	widget->cols = count_cols(widget->map);
 	widget->rows = count_rows(widget->map);
 	widget->row = 0;
