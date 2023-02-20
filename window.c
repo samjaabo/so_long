@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/10 17:59:15 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:54:29 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ static int	ft_move_up(char **map)
 {
 	int	row;
 	int	col;
-	
 	int	*pos;
 
-	pos = ft_player_pos(map);
-	row = pos[1];
-	col = pos[0];
+	pos = ft_element_pos(map, 'P');
+	row = pos[ROW];
+	col = pos[COL];
 	if (map[row - 1][col] == 'E' && !ft_count_elements(map, 'C'))
 		exit(0);
 	if (map[row - 1][col] != '1' && map[row - 1][col] != 'E')
@@ -38,12 +37,11 @@ static int	ft_move_left(char **map)
 {
 	int	row;
 	int	col;
-	
 	int	*pos;
 
-	pos = ft_player_pos(map);
-	row = pos[1];
-	col = pos[0];
+	pos = ft_element_pos(map, 'P');
+	row = pos[ROW];
+	col = pos[COL];
 	if (map[row][col - 1] == 'E' && !ft_count_elements(map, 'C'))
 		exit(0);
 	if (map[row][col - 1] != '1' && map[row][col - 1] != 'E')
@@ -59,12 +57,11 @@ static int	ft_move_right(char **map)
 {
 	int	row;
 	int	col;
-	
 	int	*pos;
 
-	pos = ft_player_pos(map);
-	row = pos[1];
-	col = pos[0];
+	pos = ft_element_pos(map, 'P');
+	row = pos[ROW];
+	col = pos[COL];
 	if (map[row][col + 1] == 'E' && !ft_count_elements(map, 'C'))
 		exit(0);
 	if (map[row][col + 1] != '1' && map[row][col + 1] != 'E')
@@ -80,12 +77,11 @@ static int	ft_move_down(char **map)
 {
 	int	row;
 	int	col;
-	
 	int	*pos;
 
-	pos = ft_player_pos(map);
-	row = pos[1];
-	col = pos[0];
+	pos = ft_element_pos(map, 'P');
+	row = pos[ROW];
+	col = pos[COL];
 	if (map[row + 1][col] == 'E' && !ft_count_elements(map, 'C'))
 		exit(0);
 	if (map[row + 1][col] != '1' && map[row + 1][col] != 'E')
@@ -97,7 +93,7 @@ static int	ft_move_down(char **map)
 	return (0);
 }
 
-int movments(int key, t_widget *widget)
+int ft_exec_move(int key, t_widget *widget)
 {
 	char		**map;
 	static int	mov_count;
@@ -112,10 +108,10 @@ int movments(int key, t_widget *widget)
 	else if (key == 125)
 		mov_count += ft_move_down(map);
 	else if (key == 53)
-		exit(0);
-	system("clear");
-	ft_printar(map);
+		ft_exit(map, 0);
+	mlx_clear_window(widget->self, widget->window);
 	self_show_widget(widget);
-	printf("%d\n", mov_count);
+	//printf("%d\n", mov_count);
+	//printf("%d\n", key);
 	return (0);
 }

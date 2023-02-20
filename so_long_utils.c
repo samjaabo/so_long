@@ -6,23 +6,33 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:28:55 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/09 08:49:56 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:19:38 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	ft_error(const char *msg)
+static char	**ft_realloc(char **array, char *new)
 {
-	write(2, "Error\n", 6);
-	write(2, msg, ft_strlen(msg));
-	exit(1);
-}
+	int		count;
+	char	**strs;
+	char	**arcpy;
+	char	**cpy;
 
-void	ft_perror(char *str)
-{
-	perror(str);
-	exit(EXIT_FAILURE);
+	count = 0;
+	while (array && array[count])
+		count++;
+	strs = malloc((count + 2) * sizeof(char *));
+	if (!strs || !new)
+		ft_error("malloc fail", array);
+	cpy = strs;
+	arcpy = array;
+	while (array && *array)
+		*strs++ = *array++;
+	*strs++ = new;
+	*strs = NULL;
+	free(arcpy);
+	return (cpy);
 }
 
 char	**ft_read_map(char *file)
@@ -32,7 +42,9 @@ char	**ft_read_map(char *file)
 	char	*tmp;
 
 	ar = NULL;
-	fd = open("tests.txt", O_RDWR);
+	fd = open(file, O_RDWR);
+	if (fd < 0)
+		ft_error("while reading file", NULL);
 	while (1)
 	{
 		tmp = get_next_line(fd);
@@ -45,84 +57,17 @@ char	**ft_read_map(char *file)
 	return (ar);
 }
 
-int	*ft_player_pos(char **map)
+void	ft_is_true_args(int argc, char **argv)
 {
-	char		*tmp;
-	static int	pos[2];
+	int		len;
+	char	*file;
 
-	pos[0] = 0;
-	pos[1] = 0;
-	while (*map)
-	{
-		tmp = *map;
-		pos[0] = 0;
-		while (*tmp)
-		{
-			if (*tmp == 'P')
-				return (pos);
-			pos[0]++;
-			++tmp;
-		}
-		pos[1]++;
-		++map;
-	}
-	return (NULL);
-}
-
-int	ft_count_elements(char **map, char c)
-{
-	char	*tmp;
-	int		count;
-
-	count = 0;
-	while (*map)
-	{
-		tmp = *map;
-		while (*tmp)
-		{
-			if (*tmp == c)
-				++count;
-			++tmp;
-		}
-		++map;
-	}
-	return (count);
-}
-
-char	*ft_clear(char **ar)
-{
-	char	**cp;
-
-	if (!ar)
-		return (NULL);
-	cp = ar;
-	while (*ar)
-		free(*ar++);
-	free(cp);
-	return (NULL);
-}
-
-char	**ft_realloc(char **array, char *new)
-{
-	int		count;
-	char	**strs;
-	char	**arcpy;
-	char	**cpy;
-
-	if (!new)
-		ft_perror("malloc fail");
-	count = 0;
-	while (array && array[count])
-		count++;
-	strs = malloc((count + 2) * sizeof(char *));
-	if (!strs)
-		ft_perror("malloc fail");
-	cpy = strs;
-	arcpy = array;
-	while (array && *array)
-		*strs++ = *array++;
-	*strs++ = new;
-	*strs = NULL;
-	free(arcpy);
-	return (cpy);
+	if (argc != 2)
+		ft_error("usage:./so_long <map_file>.ber", NULL);
+	file = argv[1];
+	len = ft_strlen(file);
+	if (len < 4)
+		ft_error("usage:./so_long <map_file>.ber", NULL);
+	if (ft_strcmp(file + len - 4, ".ber") != 0)
+		ft_error("usage:./so_long <map_file>.ber", NULL);
 }

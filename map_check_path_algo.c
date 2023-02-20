@@ -6,35 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:30:07 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/09 09:13:02 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 15:07:43 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-static int	*ft_exit_pos(char **map)
-{
-	char		*tmp;
-	static int	pos[2];
-
-	pos[0] = 0;
-	pos[1] = 0;
-	while (*map)
-	{
-		tmp = *map;
-		pos[0] = 0;
-		while (*tmp)
-		{
-			if (*tmp == 'E')
-				return (pos);
-			pos[0]++;
-			++tmp;
-		}
-		pos[1]++;
-		++map;
-	}
-	return (NULL);
-}
 
 static char	**ft_arraydup(char	**tab)
 {
@@ -66,27 +42,27 @@ static int	is_path(char c)
 	return (c == '0' || c == 'C');
 }
 
-static void	ft_write_map_paths(char **map, int row, int col)
+static void	ft_check_path(char **map, int row, int col)
 {
 	if (is_path(map[row - 1][col]))
 	{
 		map[row - 1][col] = 'P';
-		ft_write_map_paths(map, row - 1, col);
+		ft_check_path(map, row - 1, col);
 	}
 	if (is_path(map[row][col + 1]))
 	{
 		map[row][col + 1] = 'P';
-		ft_write_map_paths(map, row, col + 1);
+		ft_check_path(map, row, col + 1);
 	}
 	if (is_path(map[row + 1][col]))
 	{
 		map[row + 1][col] = 'P';
-		ft_write_map_paths(map, row + 1, col);
+		ft_check_path(map, row + 1, col);
 	}
 	if (is_path(map[row][col - 1]))
 	{
 		map[row][col - 1] = 'P';
-		ft_write_map_paths(map, row, col -1);
+		ft_check_path(map, row, col -1);
 	}
 }
 
@@ -98,15 +74,16 @@ void	ft_is_valid_path(char **_map)
 
 	map = ft_arraydup(_map);
 	if (!map)
-		ft_perror("Error\nmalloc fail");
-	ft_write_map_paths(map, ft_player_pos(map)[1], ft_player_pos(map)[0]);
+		ft_error("malloc fail", map);
+	ft_check_path(map, ft_element_pos(map, 'P')[ROW],
+		ft_element_pos(map, 'P')[COL]);
 	if (ft_count_elements(map, 'C'))
 	{
 		printf("Error\ninvalid map: invalid paths to Collectable");
 		exit(1);
 	}
-	row = ft_exit_pos(map)[1];
-	col = ft_exit_pos(map)[0];
+	row = ft_element_pos(map, 'E')[ROW];
+	col = ft_element_pos(map, 'E')[COL];
 	if (map[row - 1][col] != 'P' && map[row][col + 1] != 'P'
 		&& map[row + 1][col] != 'P' && map[row][col - 1] != 'P')
 	{

@@ -6,18 +6,18 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/10 17:52:00 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:29:30 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-
-int count_cols(char **map)
+static int count_cols(char **map)
 {
 	return (ft_strlen(*map));
 }
-int count_rows(char **map)
+
+static int count_rows(char **map)
 {
 	int n;
 
@@ -47,7 +47,7 @@ void	self_show_widget(t_widget *wid)
 			else if (wid->map[wid->row][wid->col] == 'E')
 				mlx_put_image_to_window(wid->self, wid->window,
 					wid->exit_img, wid->size * wid->col, wid->size * wid->row);
-			else
+			else if (wid->map[wid->row][wid->col] == '0')
 				mlx_put_image_to_window(wid->self, wid->window,
 					wid->ground_img, wid->size * wid->col, wid->size * wid->row);
 			wid->col++;
@@ -56,14 +56,15 @@ void	self_show_widget(t_widget *wid)
 	}
 }
 
-void	__init__(t_widget *widget, char *map_file)
+static void	__init__(t_widget *widget, char *map_file)
 {
 	int	tmp;
 
 	widget->map = ft_read_map(map_file);
 	ft_map_rules(widget->map);
+	widget->self = mlx_init();
 	widget->player_img = mlx_xpm_file_to_image(widget->self,
-		 "./textures/player.xpm", &tmp, &tmp);
+		"./textures/player.xpm", &tmp, &tmp);
 	widget->exit_img = mlx_xpm_file_to_image(widget->self,
 		"./textures/exit.xpm", &tmp, &tmp);
 	widget->collect_img = mlx_xpm_file_to_image(widget->self,
@@ -77,18 +78,20 @@ void	__init__(t_widget *widget, char *map_file)
 	widget->row = 0;
 	widget->col = 0;
 	widget->size = tmp;
-	widget->self = mlx_init();
 	widget->window = mlx_new_window(widget->self, widget->cols*widget->size,
-		widget->rows*widget->size, "42 so_long");
+		widget->rows*widget->size, "so_long");
+	ft_is_not_null(widget);
 	self_show_widget(widget);
 }
 
-int main()
+int	main(int argc, char **argv)
 {
-	int			tmp;
 	t_widget	widget;
 
-	__init__(&widget, "tests.txt");
-	mlx_key_hook(widget.window, movments, &widget);
+	ft_is_true_args(argc, argv);
+	__init__(&widget, argv[1]);
+	mlx_hook(widget.window, ON_KEYDOWN, USELESS, ft_exec_move, &widget);
+	mlx_hook(widget.window, ON_DESTROY, USELESS, ft_destroy, &widget);
 	mlx_loop(widget.self);
+	return (0);
 }
