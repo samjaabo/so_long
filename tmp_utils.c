@@ -6,11 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:50:15 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/01/09 08:51:22 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:42:03 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "so_long.h"
 
 void ft_printar(char **t)
 {

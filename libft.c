@@ -6,11 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:32:52 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 15:53:51 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:41:31 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "so_long.h"
 
 static char	*ft_split_int(int n)
 {

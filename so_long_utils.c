@@ -6,11 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:28:55 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 16:19:38 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:41:52 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "so_long.h"
 
 static char	**ft_realloc(char **array, char *new)
 {

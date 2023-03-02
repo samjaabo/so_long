@@ -6,11 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:30:07 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 15:07:43 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:41:40 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "so_long.h"
 
 static char	**ft_arraydup(char	**tab)
 {

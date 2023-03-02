@@ -6,11 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:28:53 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/19 16:44:05 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:41:11 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "so_long.h"
 
 int	*ft_element_pos(char **map, char element)
 {

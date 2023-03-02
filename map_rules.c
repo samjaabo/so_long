@@ -6,11 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:38:44 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 16:25:22 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:41:44 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "so_long.h"
 
 static int	ft_is_map(char c)
 {

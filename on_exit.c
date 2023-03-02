@@ -6,11 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 15:27:29 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 16:04:58 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:41:48 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "so_long.h"
 
 void	ft_exit(char **map, int p_exit)
 {
