@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 16:42:09 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/04 13:36:24 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	ft_move_down(char **map)
 	row = pos[ROW];
 	col = pos[COL];
 	if (map[row + 1][col] == 'E' && !ft_count_elements(map, 'C'))
-		exit(0);
+		ft_exit(map, 0);
 	if (map[row + 1][col] != '1' && map[row + 1][col] != 'E')
 	{
 		map[row + 1][col] = 'P';
@@ -99,19 +99,18 @@ int ft_exec_move(int key, t_widget *widget)
 	static int	mov_count;
 
 	map = widget->map;
-	if (key == 126)
+	if (key == 126 || key == 13)
 		mov_count += ft_move_up(map);
-	else if (key == 123)
+	else if (key == 123 || key == 0)
 		mov_count += ft_move_left(map);
-	else if (key == 124)
+	else if (key == 124 || key == 2)
 		mov_count += ft_move_right(map);
-	else if (key == 125)
+	else if (key == 125 || key == 1)
 		mov_count += ft_move_down(map);
 	else if (key == 53)
-		ft_exit(map, 0);
+		ft_destroy(widget);
 	mlx_clear_window(widget->self, widget->window);
 	self_show_widget(widget);
-	//printf("%d\n", mov_count);
-	//printf("%d\n", key);
+	ft_putnbr(mov_count);
 	return (0);
 }

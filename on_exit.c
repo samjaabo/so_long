@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 15:27:29 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 16:41:48 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/03 18:28:40 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	ft_is_not_null(t_widget *wid)
 
 int	ft_destroy(t_widget *wid)
 {
+	mlx_clear_window(wid->self, wid->window);
+	mlx_destroy_window(wid->self, wid->window);
 	ft_exit(wid->map, 0);
 	return (0);
 }

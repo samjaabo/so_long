@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:28:55 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 16:41:52 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:24:50 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	**ft_realloc(char **array, char *new)
 
 char	**ft_read_map(char *file)
 {
-	int fd;
+	int		fd;
 	char	**ar;
 	char	*tmp;
 
