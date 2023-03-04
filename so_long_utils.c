@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 08:28:55 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/02 17:24:50 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:30:17 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ft_read_map(char *file)
 	ar = NULL;
 	fd = open(file, O_RDWR);
 	if (fd < 0)
-		ft_error("while reading file", NULL);
+		ft_error("while reading from file", NULL);
 	while (1)
 	{
 		tmp = get_next_line(fd);

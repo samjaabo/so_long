@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/04 15:21:00 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:27:03 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ static void	__init__(t_widget *widget, char *map_file)
 	widget->player_img = mlx_xpm_file_to_image(widget->self,
 		"./textures/player-to-front.xpm", &tmp, &tmp);
 	widget->exit_img = mlx_xpm_file_to_image(widget->self,
-		"./textures/exit-closed.xpm", &tmp, &tmp);
+		"./textures/exit-opened.xpm", &tmp, &tmp);
 	widget->collect_img = mlx_xpm_file_to_image(widget->self,
-		"./textures/collect-1.xpm", &tmp, &tmp);
+		"./textures/collect-0.xpm", &tmp, &tmp);
 	widget->ground_img = mlx_xpm_file_to_image(widget->self,
 		"./textures/ground2.xpm", &tmp, &tmp);
 	widget->wall_img = mlx_xpm_file_to_image(widget->self,
