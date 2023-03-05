@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   on_exit.c                                          :+:      :+:    :+:   */
+/*   on_exit_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 15:27:29 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 14:15:14 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:25:44 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_exit(char **map, int p_exit)
 {
@@ -42,7 +42,7 @@ char	*ft_clear(char **ar)
 
 void	ft_is_not_null(t_widget *wid)
 {
-	if (!wid->collect_img || !wid->exit_img
+	if (!wid->collect_img1 || !wid->exit_img
 		|| !wid->ground_img || !wid->wall_img || !wid->window
 		|| !wid->self || !wid->player_to_left || !wid->player_to_right
 		|| !wid->exit_opened || !wid->collect_img2)

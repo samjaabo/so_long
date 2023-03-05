@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:06:58 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 14:28:26 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:25:53 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define HEADER_H
 
 # include <stdio.h>
-# include "get_next_line.h"
+# include "get_next_line_bonus.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <time.h>
 # include <mlx.h>
 
 //tmp_utils.c
@@ -42,6 +43,7 @@ typedef struct widget_s {
 	void	*exit_img;
 	void	*enemy_img;
 	void	*collect_img2;
+	void	*collect_img1;
 	void	*exit_opened;
 	void	*player_to_left;
 	void	*player_to_right;

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check_path_algo.c                              :+:      :+:    :+:   */
+/*   map_check_path_algo_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 21:30:07 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 14:03:04 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:25:25 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static char	**ft_arraydup(char	**tab)
 {
