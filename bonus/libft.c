@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:32:52 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 11:22:50 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:28:08 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,6 @@ char	*ft_itoa(int n)
 	if (n == 0)
 		--str;
 	return (str);
-}
-
-void	ft_putnbr(int n)
-{
-	ft_putstr(ft_itoa(n));
-	ft_putstr("\n");
-}
-
-void	ft_putstr(char *s)
-{
-	if (!s)
-		return ;
-	while (*s)
-		write(1, s++, 1);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 15:27:29 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/04 22:13:39 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:15:14 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,13 @@ char	*ft_clear(char **ar)
 	return (NULL);
 }
 
-void	ft_is_not_null(t_widget *wid, int part)
+void	ft_is_not_null(t_widget *wid)
 {
-	if (part == 1 && (!wid->collect_img || !wid->exit_img || !wid->ground_img
-		|| !wid->wall_img || !wid->window || !wid->self))
-		ft_error("mlx0 fail returns NULL", wid->map);
-	else if (part == 0 && (!wid->collect_1 || !wid->exit_1 || !wid->enemy_0 || !wid->enemy_1
-		|| !wid->player_to_left || !wid->player_to_right))
-		ft_error("mlx1 fail returns NULL", wid->map);
+	if (!wid->collect_img || !wid->exit_img
+		|| !wid->ground_img || !wid->wall_img || !wid->window
+		|| !wid->self || !wid->player_to_left || !wid->player_to_right
+		|| !wid->exit_opened || !wid->collect_img2)
+		ft_error("mlx fail returns NULL", wid->map);
 }
 
 int	ft_destroy(t_widget *wid)

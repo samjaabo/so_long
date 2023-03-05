@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 13:02:27 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:29:50 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,6 @@ int ft_exec_move(int key, t_widget *widget)
 		ft_move_down(map, &mov_count);
 	else if (key == 53)
 		ft_destroy(widget);
-	if (key == 123 || key == 0)
-		widget->player_img = widget->player_to_left;
-	else if (key == 124 || key == 2)
-		widget->player_img = widget->player_to_right;
-	if (ft_count_elements(map, 'C') == 0)
-		widget->exit_img = widget->exit_1;
 	widget->mov_count = mov_count;
 	return (0);
 }

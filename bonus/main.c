@@ -6,16 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 13:08:28 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:27:45 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int count_cols(char **map)
-{
-	return (ft_strlen(*map));
-}
 
 static int count_rows(char **map)
 {
@@ -56,86 +51,21 @@ void	self_show_widget(t_widget *wid)
 	}
 }
 
-int	ft_show_collect_animation(t_widget *wid)
+void	self_show_enemy(t_widget *wid)
 {
-	static int last;
-
 	wid->row = 0;
 	while (wid->row < wid->rows)
 	{
 		wid->col = 0;
 		while (wid->col < wid->cols)
 		{
-			if (wid->map[wid->row][wid->col] == 'C' && last == 0)
+			if (wid->map[wid->row][wid->col] == 'N')
 				mlx_put_image_to_window(wid->self, wid->window,
-					wid->collect_img, wid->size * wid->col, wid->size * wid->row);
-			if (wid->map[wid->row][wid->col] == 'C' && last == 1)
-				mlx_put_image_to_window(wid->self, wid->window,
-					wid->collect_1, wid->size * wid->col, wid->size * wid->row);
+					wid->enemy_img, wid->size * wid->col, wid->size * wid->row);
 			wid->col++;
 		}
 		wid->row++;
 	}
-	if (last == 0)
-		last = 1;
-	else
-		last = 0;
-	return (0);
-}
-
-static void	ft_enemy_move(char **map, int row, int col)
-{
-	int	random;
-
-	srand(time(NULL));
-	random = rand() % 4;
-	if (map[row - 1][col] == '0' && random == 0)
-	{
-		map[row - 1][col] = 'N';
-		map[row][col] = '0';
-	}
-	else if (map[row][col + 1]== '0' && random == 1)
-	{
-		map[row][col + 1] = 'N';
-		map[row][col] = '0';
-	}
-	else if (map[row + 1][col] == '0' && random == 2)
-	{
-		map[row + 1][col] = 'N';
-		map[row][col] = '0';
-	}
-	else if (map[row][col - 1] == '0')
-	{
-		map[row][col - 1] = 'N';
-		map[row][col] = '0';
-	}
-}
-
-int	ft_show_enemy_animation(t_widget *wid)
-{
-	static int last;
-
-	wid->row = 0;
-	while (wid->row < wid->rows)
-	{
-		wid->col = 0;
-		while (wid->col < wid->cols)
-		{
-			if (wid->map[wid->row][wid->col] == 'N' && last == 0)
-				mlx_put_image_to_window(wid->self, wid->window,
-					wid->enemy_0, wid->size * wid->col, wid->size * wid->row);
-			if (wid->map[wid->row][wid->col] == 'N' && last == 1)
-				mlx_put_image_to_window(wid->self, wid->window,
-					wid->enemy_1, wid->size * wid->col, wid->size * wid->row);
-			wid->col++;
-		}
-		wid->row++;
-	}
-	if (last == 0)
-		last = 1;
-	else
-		last = 0;
-	return (0);
 }
 
 static void	__init__(t_widget *widget, char *map_file)
@@ -153,14 +83,15 @@ static void	__init__(t_widget *widget, char *map_file)
 		"../textures/ground2.xpm", &tmp, &tmp);
 	widget->wall_img = mlx_xpm_file_to_image(widget->self,
 		"../textures/ground1.xpm", &tmp, &tmp);
-	widget->cols = count_cols(widget->map);
+	widget->enemy_img = mlx_xpm_file_to_image(widget->self,
+		"../textures/dog-enemy.xpm", &tmp, &tmp);
+	widget->cols = ft_strlen(widget->map[0]);
 	widget->rows = count_rows(widget->map);
 	widget->row = 0;
 	widget->col = 0;
 	widget->size = tmp;
 	widget->window = mlx_new_window(widget->self, widget->cols * widget->size,
-		(widget->rows + 1) *  widget->size, "so_long");
-	ft_is_not_null(widget, 1);
+		(widget->rows + 1) * widget->size, "so_long");
 }
 
 static void	__init__bonus(t_widget *widget)
@@ -171,42 +102,24 @@ static void	__init__bonus(t_widget *widget)
 		"../textures/player-to-left.xpm", &tmp, &tmp);
 	widget->player_to_right = mlx_xpm_file_to_image(widget->self,
 		"../textures/player-to-right.xpm", &tmp, &tmp);
-	widget->exit_1 = mlx_xpm_file_to_image(widget->self,
-		"../textures/exit-opened.xpm", &tmp, &tmp);
-	widget->collect_1 = mlx_xpm_file_to_image(widget->self,
+	widget->collect_img2 = mlx_xpm_file_to_image(widget->self,
 		"../textures/collect-1.xpm", &tmp, &tmp);
-	widget->enemy_0 = mlx_xpm_file_to_image(widget->self,
-		"../textures/enemy0.xpm", &tmp, &tmp);
-	widget->enemy_1 = mlx_xpm_file_to_image(widget->self,
-		"../textures/enemy1.xpm", &tmp, &tmp);
+	widget->exit_opened = mlx_xpm_file_to_image(widget->self,
+		"../textures/exit-opened.xpm", &tmp, &tmp);
 	widget->player_img = widget->player_to_left;
 	widget->mov_count = 0;
-	ft_is_not_null(widget, 0);
-	self_show_widget(widget);
+	ft_is_not_null(widget);
 }
 
-int	ft_update(t_widget *widget)
+static int	ft_update(t_widget *widget)
 {
-	static int	counter;
-
-	(void)widget;
 	mlx_clear_window(widget->self, widget->window);
-	if (counter >= 3000)
-	{
-		ft_show_collect_animation(widget);
-		if (ft_count_elements(widget->map, 'N'))
-			ft_enemy_move(widget->map, ft_element_pos(widget->map, 'N')[ROW],
-				ft_element_pos(widget->map, 'N')[COL]);
-		if (ft_count_elements(widget->map, 'P') == 0)
-			ft_destroy(widget);
-		ft_show_enemy_animation(widget);
-		counter = 0;
-	}
 	self_show_widget(widget);
+	self_show_enemy(widget);
 	mlx_string_put(widget->self, widget->window,
-		widget->cols / 2 * widget->size, (widget->rows) * widget->size,
+		widget->cols / 2 * widget->size,
+		widget->rows * widget->size + widget->size / 2,
 		0xFFFFFF, ft_itoa(widget->mov_count));
-	counter++;
 	return (0);
 }
 
@@ -223,24 +136,3 @@ int	main(int argc, char **argv)
 	mlx_loop(widget.self);
 	return (0);
 }
-
-// #include <stdio.h>
-// #include <time.h>
-
-// void print_hello_every_second() {
-//     clock_t start_time = clock();
-//     double elapsed_time = 0.0;
-
-//     while (1) {
-//         elapsed_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
-//         if (elapsed_time >= 1.0) {
-//             printf("Hello!\n");
-//             start_time = clock();
-//         }
-//     }
-// }
-
-// int main() {
-//     print_hello_every_second();
-//     return 0;
-// }

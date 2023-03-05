@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:38:44 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/04 21:11:25 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:03:36 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_is_map(char c)
 {
-	return (c == 'P' || c == 'C' || c == 'E' || c == '0' || c == '1'
-		|| c == 'N');
+	return (c == 'P' || c == 'C' || c == 'E'
+		|| c == '0' || c == '1' || c == 'N');
 }
 
 static void	ft_allowed_chars(char **map)
