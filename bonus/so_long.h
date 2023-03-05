@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:06:58 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/04 21:13:50 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 12:37:23 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct widget_s {
 	int		row;
 	int		col;
 	int		size;
+	int		mov_count;
 }			t_widget;
 
 //project functions
@@ -82,6 +83,7 @@ int			ft_count_elements(char **map, char element);
 */
 void	ft_putstr(char *s);
 void	ft_putnbr(int n);
+char	*ft_itoa(int n);
 int		ft_strcmp(const char *s1, const char *s2);
 
 /*

@@ -6,16 +6,11 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/04 15:27:03 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 13:24:19 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int count_cols(char **map)
-{
-	return (ft_strlen(*map));
-}
 
 static int count_rows(char **map)
 {
@@ -73,7 +68,7 @@ static void	__init__(t_widget *widget, char *map_file)
 		"./textures/ground2.xpm", &tmp, &tmp);
 	widget->wall_img = mlx_xpm_file_to_image(widget->self,
 		"./textures/ground1.xpm", &tmp, &tmp);
-	widget->cols = count_cols(widget->map);
+	widget->cols = ft_strlen(widget->map[0]);
 	widget->rows = count_rows(widget->map);
 	widget->row = 0;
 	widget->col = 0;
@@ -84,6 +79,13 @@ static void	__init__(t_widget *widget, char *map_file)
 	self_show_widget(widget);
 }
 
+static int	ft_update(t_widget *widget)
+{
+	mlx_clear_window(widget->self, widget->window);
+	self_show_widget(widget);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_widget	widget;
@@ -92,6 +94,7 @@ int	main(int argc, char **argv)
 	__init__(&widget, argv[1]);
 	mlx_hook(widget.window, ON_KEYDOWN, USELESS, ft_exec_move, &widget);
 	mlx_hook(widget.window, ON_DESTROY, USELESS, ft_destroy, &widget);
+	mlx_loop_hook(widget.self , ft_update, &widget);
 	mlx_loop(widget.self);
 	return (0);
 }

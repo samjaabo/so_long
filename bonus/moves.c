@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/04 22:12:11 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 13:02:27 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int ft_exec_move(int key, t_widget *widget)
 {
 	char		**map;
 	static int	mov_count;
-	static int	last;
 
 	map = widget->map;
 	if (key == 126 || key == 13)
@@ -113,13 +112,8 @@ int ft_exec_move(int key, t_widget *widget)
 		widget->player_img = widget->player_to_left;
 	else if (key == 124 || key == 2)
 		widget->player_img = widget->player_to_right;
-	mlx_clear_window(widget->self, widget->window);
-	self_show_widget(widget);
-	ft_show_enemy_animation(widget);
-	if (last != mov_count)
-	{
-		//ft_putnbr(mov_count);
-		last = mov_count;
-	}
+	if (ft_count_elements(map, 'C') == 0)
+		widget->exit_img = widget->exit_1;
+	widget->mov_count = mov_count;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/04 22:13:29 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 13:08:28 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,34 @@ int	ft_show_collect_animation(t_widget *wid)
 	return (0);
 }
 
+static void	ft_enemy_move(char **map, int row, int col)
+{
+	int	random;
+
+	srand(time(NULL));
+	random = rand() % 4;
+	if (map[row - 1][col] == '0' && random == 0)
+	{
+		map[row - 1][col] = 'N';
+		map[row][col] = '0';
+	}
+	else if (map[row][col + 1]== '0' && random == 1)
+	{
+		map[row][col + 1] = 'N';
+		map[row][col] = '0';
+	}
+	else if (map[row + 1][col] == '0' && random == 2)
+	{
+		map[row + 1][col] = 'N';
+		map[row][col] = '0';
+	}
+	else if (map[row][col - 1] == '0')
+	{
+		map[row][col - 1] = 'N';
+		map[row][col] = '0';
+	}
+}
+
 int	ft_show_enemy_animation(t_widget *wid)
 {
 	static int last;
@@ -118,7 +146,7 @@ static void	__init__(t_widget *widget, char *map_file)
 	ft_map_rules(widget->map);
 	widget->self = mlx_init();
 	widget->exit_img = mlx_xpm_file_to_image(widget->self,
-		"../textures/exit-opened.xpm", &tmp, &tmp);
+		"../textures/exit-closed.xpm", &tmp, &tmp);
 	widget->collect_img = mlx_xpm_file_to_image(widget->self,
 		"../textures/collect-0.xpm", &tmp, &tmp);
 	widget->ground_img = mlx_xpm_file_to_image(widget->self,
@@ -130,8 +158,8 @@ static void	__init__(t_widget *widget, char *map_file)
 	widget->row = 0;
 	widget->col = 0;
 	widget->size = tmp;
-	widget->window = mlx_new_window(widget->self, widget->cols*widget->size,
-		widget->rows*widget->size, "so_long");
+	widget->window = mlx_new_window(widget->self, widget->cols * widget->size,
+		(widget->rows + 1) *  widget->size, "so_long");
 	ft_is_not_null(widget, 1);
 }
 
@@ -144,14 +172,15 @@ static void	__init__bonus(t_widget *widget)
 	widget->player_to_right = mlx_xpm_file_to_image(widget->self,
 		"../textures/player-to-right.xpm", &tmp, &tmp);
 	widget->exit_1 = mlx_xpm_file_to_image(widget->self,
-		"../textures/exit-closed.xpm", &tmp, &tmp);
+		"../textures/exit-opened.xpm", &tmp, &tmp);
 	widget->collect_1 = mlx_xpm_file_to_image(widget->self,
 		"../textures/collect-1.xpm", &tmp, &tmp);
 	widget->enemy_0 = mlx_xpm_file_to_image(widget->self,
-		"../textures/enemy-0.xpm", &tmp, &tmp);
+		"../textures/enemy0.xpm", &tmp, &tmp);
 	widget->enemy_1 = mlx_xpm_file_to_image(widget->self,
-		"../textures/enemy-1.xpm", &tmp, &tmp);
+		"../textures/enemy1.xpm", &tmp, &tmp);
 	widget->player_img = widget->player_to_left;
+	widget->mov_count = 0;
 	ft_is_not_null(widget, 0);
 	self_show_widget(widget);
 }
@@ -161,12 +190,22 @@ int	ft_update(t_widget *widget)
 	static int	counter;
 
 	(void)widget;
-	if (counter >= 2000)
+	mlx_clear_window(widget->self, widget->window);
+	if (counter >= 3000)
 	{
 		ft_show_collect_animation(widget);
+		if (ft_count_elements(widget->map, 'N'))
+			ft_enemy_move(widget->map, ft_element_pos(widget->map, 'N')[ROW],
+				ft_element_pos(widget->map, 'N')[COL]);
+		if (ft_count_elements(widget->map, 'P') == 0)
+			ft_destroy(widget);
 		ft_show_enemy_animation(widget);
-		counter = 0; 
+		counter = 0;
 	}
+	self_show_widget(widget);
+	mlx_string_put(widget->self, widget->window,
+		widget->cols / 2 * widget->size, (widget->rows) * widget->size,
+		0xFFFFFF, ft_itoa(widget->mov_count));
 	counter++;
 	return (0);
 }

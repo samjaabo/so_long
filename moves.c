@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/04 15:59:19 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 13:22:04 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,6 @@ int ft_exec_move(int key, t_widget *widget)
 		ft_move_down(map, &mov_count);
 	else if (key == 53)
 		ft_destroy(widget);
-	mlx_clear_window(widget->self, widget->window);
-	self_show_widget(widget);
 	if (last != mov_count)
 	{
 		ft_putnbr(mov_count);

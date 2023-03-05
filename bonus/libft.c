@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 17:32:52 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/03 13:01:47 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 11:22:50 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*ft_split_int(int n)
 	return ((char *)s);
 }
 
-static char	*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 
