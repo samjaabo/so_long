@@ -6,7 +6,7 @@
 #    By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/19 08:59:19 by samjaabo          #+#    #+#              #
-#    Updated: 2023/03/05 16:27:31 by samjaabo         ###   ########.fr        #
+#    Updated: 2023/03/05 16:36:53 by samjaabo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 SRCSX = main.c get_next_line.c get_next_line_utils.c map_check_path_algo.c \
-		moves.c map_rules.c so_long_utils.c elements.c on_exit.c libft.c
+		moves.c map_rules.c so_long_utils.c elements.c on_exit.c libft.c \
+		enemy.c utils.c
 
 SRCS = $(SRCSX:.c=_bonus.c)
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:06:58 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 16:25:53 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:35:47 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,14 @@ typedef struct widget_s {
 	int		size;
 }			t_widget;
 
-//project functions
-int ft_exec_move(int key, t_widget *widget);
+//enemy_bonus.c
+void	self_show_enemy(t_widget *wid);
+
+//bonus_utils.c
+int		ft_update(t_widget *widget);
+
+//moves.c
+int		ft_exec_move(int key, t_widget *widget);
 
 //so_long_utils.c
 char	**ft_read_map(char *file);
