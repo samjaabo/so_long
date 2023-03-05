@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 16:32:32 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 16:33:29 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:33:42 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	self_show_enemy(t_widget *wid)
 				if (one_sec != time(NULL))
 				{
 					ft_random_move(wid->map, wid->row, wid->col);
-				 	one_sec = time(NULL);
+					one_sec = time(NULL);
 				}
 				mlx_put_image_to_window(wid->self, wid->window,
 					wid->enemy_img, wid->size * wid->col, wid->size * wid->row);
