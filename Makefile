@@ -6,7 +6,7 @@
 #    By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/19 08:59:19 by samjaabo          #+#    #+#              #
-#    Updated: 2023/03/05 17:34:42 by samjaabo         ###   ########.fr        #
+#    Updated: 2023/03/05 18:43:17 by samjaabo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,12 @@ re: fclean all
 
 ifeq ($(MAKECMDGOALS),bonus)
 $(NAME): $(BONUS_OBJS)
-	$(CC) $(MLXFLAGS) -o $(NAME) $(BONUS_OBJS)
+	@$(CC) $(MLXFLAGS) -o $(NAME) $(BONUS_OBJS)
+%.o: %.c ./bonus/so_long_bonus.h
+	@$(CC) $(CFLAGS) -c $< -o $@
 else
 $(NAME): $(OBJS)
-	$(CC) $(MLXFLAGS) -o $(NAME) $(OBJS)
-endif
-
+	@$(CC) $(MLXFLAGS) -o $(NAME) $(OBJS)
 %.o: %.c so_long.h
 	@$(CC) $(CFLAGS) -c $< -o $@
+endif

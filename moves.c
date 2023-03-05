@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 16:08:02 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 13:22:04 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:56:40 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static int	ft_move_down(char **map, int *count)
 	return (0);
 }
 
-int ft_exec_move(int key, t_widget *widget)
+int	ft_exec_move(int key, t_widget *widget)
 {
 	char		**map;
 	static int	mov_count;

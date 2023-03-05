@@ -6,12 +6,12 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:06:58 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 16:35:47 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:15:52 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <stdio.h>
 # include "get_next_line_bonus.h"
@@ -20,9 +20,6 @@
 # include <stdlib.h>
 # include <time.h>
 # include <mlx.h>
-
-//tmp_utils.c
-void		 ft_printar(char **t);
 
 enum e_const {
 	USELESS = 0,
@@ -55,26 +52,40 @@ typedef struct widget_s {
 	int		size;
 }			t_widget;
 
-//enemy_bonus.c
+/*
+** enemy_bonus.c
+*/
 void	self_show_enemy(t_widget *wid);
 
-//bonus_utils.c
+/*
+** bonus_utils.c
+*/
 int		ft_update(t_widget *widget);
 
-//moves.c
+/*
+** moves.c
+*/
 int		ft_exec_move(int key, t_widget *widget);
 
-//so_long_utils.c
+/*
+** so_long_utils.c
+*/
 char	**ft_read_map(char *file);
 void	ft_is_true_args(int argc, char **argv);
 
-//map_check_path_algo.c
+/*
+** map_check_path_algo.c
+*/
 void	ft_is_valid_path(char **_map);
 
-//map_rules.c
+/*
+** map_rules.c
+*/
 void	ft_map_rules(char **map);
 
-//main.c
+/*
+** main.c
+*/
 void	self_show_widget(t_widget *wid);
 
 /*

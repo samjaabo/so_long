@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_utils.c                                      :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 16:29:51 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 16:35:58 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:09:26 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	ft_check_exit(t_widget *wid)
 static void	ft_animate_collectable(t_widget *wid)
 {
 	static int	per_sec = 0;
+
 	if (per_sec != time(NULL))
 	{
 		if (wid->collect_img == wid->collect_img1)

@@ -6,12 +6,12 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:06:58 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/02/20 17:20:21 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:00:51 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include <stdio.h>
 # include "get_next_line.h"
@@ -19,9 +19,6 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <mlx.h>
-
-//tmp_utils.c
-void		 ft_printar(char **t);
 
 enum e_const {
 	USELESS = 0,
@@ -47,21 +44,31 @@ typedef struct widget_s {
 	int		size;
 }			t_widget;
 
-//project functions
-int ft_exec_move(int key, t_widget *widget);
+/*
+** moves.c
+*/
+int			ft_exec_move(int key, t_widget *widget);
 
-//so_long_utils.c
-char	**ft_read_map(char *file);
-void	ft_is_true_args(int argc, char **argv);
+/*
+** so_long_utils.c
+*/
+char		**ft_read_map(char *file);
+void		ft_is_true_args(int argc, char **argv);
 
-//map_check_path_algo.c
-void	ft_is_valid_path(char **_map);
+/*
+** map_check_path_algo.c
+*/
+void		ft_is_valid_path(char **_map);
 
-//map_rules.c
-void	ft_map_rules(char **map);
+/*
+** map_rules.c
+*/
+void		ft_map_rules(char **map);
 
-//main.c
-void	self_show_widget(t_widget *wid);
+/*
+** main.c
+*/
+void		self_show_widget(t_widget *wid);
 
 /*
 ** elements.c
@@ -72,17 +79,17 @@ int			ft_count_elements(char **map, char element);
 /*
 ** libft.c
 */
-void	ft_putstr(char *s);
-void	ft_putnbr(int n);
-int		ft_strcmp(const char *s1, const char *s2);
+void		ft_putstr(char *s);
+void		ft_putnbr(int n);
+int			ft_strcmp(const char *s1, const char *s2);
 
 /*
 ** exit_and_arror.c handling errors here
 */
-void	ft_exit(char **map, int p_exit);
-void	ft_error(const char *msg, char **map);
-char	*ft_clear(char **ar);
-void	ft_is_not_null(t_widget *wid);
-int		ft_destroy(t_widget *wid);
+void		ft_exit(char **map, int p_exit);
+void		ft_error(const char *msg, char **map);
+char		*ft_clear(char **ar);
+void		ft_is_not_null(t_widget *wid);
+int			ft_destroy(t_widget *wid);
 
 #endif

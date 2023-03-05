@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 16:32:32 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 18:33:42 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:02:37 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ static void	ft_check(char **map, int row, int col)
 	if (map[row][col] == 'P')
 		ft_exit(map, 0);
 	map[row][col] = 'N';
-
 }
 
 static void	ft_random_move(char **map, int row, int col)
 {
-	int random;
+	int	random;
 
 	srand(clock());
 	random = rand() % 4;
