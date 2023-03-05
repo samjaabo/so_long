@@ -6,7 +6,7 @@
 /*   By: samjaabo <samjaabo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:56:11 by samjaabo          #+#    #+#             */
-/*   Updated: 2023/03/05 16:33:02 by samjaabo         ###   ########.fr       */
+/*   Updated: 2023/03/05 17:43:34 by samjaabo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ static void	__init__(t_widget *widget, char *map_file)
 	ft_map_rules(widget->map);
 	widget->self = mlx_init();
 	widget->exit_img = mlx_xpm_file_to_image(widget->self,
-		"../textures/exit-closed.xpm", &tmp, &tmp);
+		"./textures/exit-closed.xpm", &tmp, &tmp);
 	widget->ground_img = mlx_xpm_file_to_image(widget->self,
-		"../textures/ground2.xpm", &tmp, &tmp);
+		"./textures/ground2.xpm", &tmp, &tmp);
 	widget->wall_img = mlx_xpm_file_to_image(widget->self,
-		"../textures/ground1.xpm", &tmp, &tmp);
+		"./textures/ground1.xpm", &tmp, &tmp);
 	widget->enemy_img = mlx_xpm_file_to_image(widget->self,
-		"../textures/dog-enemy.xpm", &tmp, &tmp);
+		"./textures/dog-enemy.xpm", &tmp, &tmp);
 	widget->cols = ft_strlen(widget->map[0]);
 	widget->rows = count_rows(widget->map);
 	widget->row = 0;
@@ -80,16 +80,16 @@ static void	__init__bonus(t_widget *widget)
 	int	tmp;
 
 	widget->player_to_left = mlx_xpm_file_to_image(widget->self,
-		"../textures/player-to-left.xpm", &tmp, &tmp);
+		"./textures/player-to-left.xpm", &tmp, &tmp);
 	widget->player_to_right = mlx_xpm_file_to_image(widget->self,
-		"../textures/player-to-right.xpm", &tmp, &tmp);
+		"./textures/player-to-right.xpm", &tmp, &tmp);
 	widget->collect_img2 = mlx_xpm_file_to_image(widget->self,
-		"../textures/collect-1.xpm", &tmp, &tmp);
+		"./textures/collect-1.xpm", &tmp, &tmp);
 	widget->collect_img1 = mlx_xpm_file_to_image(widget->self,
-		"../textures/collect-0.xpm", &tmp, &tmp);
+		"./textures/collect-0.xpm", &tmp, &tmp);
 	widget->collect_img = widget->collect_img1;
 	widget->exit_opened = mlx_xpm_file_to_image(widget->self,
-		"../textures/exit-opened.xpm", &tmp, &tmp);
+		"./textures/exit-opened.xpm", &tmp, &tmp);
 	widget->player_img = widget->player_to_left;
 	widget->mov_count = 0;
 	ft_is_not_null(widget);
